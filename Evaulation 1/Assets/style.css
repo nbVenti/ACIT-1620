@@ -1,0 +1,116 @@
+body{
+    background-color: #f0f0f0;
+    align-content: center;
+    width: 900px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 4px;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+
+}
+
+ul{
+    text-align: left;
+}
+
+
+
+h2{
+   border: None;
+   border-bottom: dotted gray; 
+   text-align: left;
+
+}
+
+
+#head{
+    width: 900px;
+    background-color: white;
+}
+
+#teachers:after{
+    content: "";
+    display: grid;
+    clear: both;
+    justify-content: space-evenly;
+    
+    
+}
+#tim{
+    float: left;
+    width: 33.33%;
+    background-color: white;
+    border: 1px #cccccc solid;
+    margin: 10px;
+    justify-content: space-evenly;
+    
+    
+}
+
+#Students:after{
+    content: "";
+    display: grid;
+    clear: both;
+}
+#John{
+    float: left;
+    width: 27%;
+    background-color: white;
+    border: 1px #cccccc solid;
+    margin: 10px
+
+}
+#John:hover{
+    background-color: #ccffcc;
+}
+
+#caps::first-line{
+    font-size: 1.2em;
+    font-variant: small-caps;
+    text-transform: lowercase;
+
+
+}
+
+.pfp{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    object-fit: cover;
+
+}
+.img{
+    width: 200px;
+    align-self: left;
+    float: left;
+    
+}
+.title{
+    font-family:'Courier New', Courier, monospace;
+    color: red;
+    text-align: right;
+    font-weight: 900;
+    font-size: 90px;
+    height: 80px;
+
+}
+
+.sub{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: darkslategray;
+    font-weight: 100;
+    text-align: right;
+    font-size: 30px;
+
+}
+
+.story{
+    text-align: left;
+}
+
+.footer{
+    background-color: black;
+    color: white;
+}

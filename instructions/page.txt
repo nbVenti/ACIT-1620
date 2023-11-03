@@ -1,0 +1,39 @@
+ACIT1620
+Week 4
+Our instructors
+Tim G
+Introduction to Web technologies
+The code for the course is ACIT1620.
+
+Prisha Patel
+Business Communications
+The code for the course is COMM1234.
+
+Our students
+John Doe
+
+Option: Cloud
+Some text that describes lorem ipsum.
+
+Sarah Something
+
+Option: Python
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Matt Dupont
+
+Option: Javascript
+Shoot for the moon; if you miss you'll die in space.
+
+Our projects
+Typical projects are:
+
+a personal portfolio website
+a note taking application
+a rock-paper-scissors game
+Our story
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit sed vulputate mi sit amet mauris commodo. Rhoncus dolor purus non enim praesent elementum. A iaculis at erat pellentesque. Sed augue lacus viverra vitae congue eu. Neque viverra justo nec ultrices dui sapien eget mi proin. Neque laoreet suspendisse interdum consectetur libero. Purus semper eget duis at tellus at. Aliquet bibendum enim facilisis gravida neque convallis a cras semper. A condimentum vitae sapien pellentesque habitant morbi tristique senectus. Lacus luctus accumsan tortor posuere.
+
+Nunc aliquet bibendum enim facilisis gravida. Pellentesque id nibh tortor id aliquet lectus proin nibh. Enim blandit volutpat maecenas volutpat blandit aliquam etiam erat velit. Fermentum leo vel orci porta non pulvinar neque. Venenatis cras sed felis eget. Vel pretium lectus quam id leo. Amet consectetur adipiscing elit ut aliquam purus sit. Nisi lacus sed viverra tellus in hac. Volutpat est velit egestas dui. Felis eget nunc lobortis mattis aliquam faucibus purus in massa. Nec feugiat in fermentum posuere urna nec tincidunt. Et ultrices neque ornare aenean euismod. Integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Placerat duis ultricies lacus sed turpis. Sit amet cursus sit amet. Ornare arcu odio ut sem nulla pharetra diam. Eget velit aliquet sagittis id consectetur purus ut. Dignissim cras tincidunt lobortis feugiat vivamus at.
+
+CHANGE THIS TO YOUR NAME - CHANGE THIS TO YOUR STUDENT ID

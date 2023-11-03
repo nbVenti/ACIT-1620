@@ -1,0 +1,60 @@
+body{
+    width: 600px;
+    padding: 10px;
+    margin: 0 auto;
+    border: 1px black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #189AB4;
+}
+
+h1{
+    text-align: center;
+}
+
+h1:hover{
+    background-color: aqua;
+}
+
+
+
+
+input#Fname:invalid{
+    border: 3px solid red;
+}
+
+input#Lname:invalid{
+    border: 3px solid red
+}
+
+input#Fname:valid{
+    border: 3px solid green;
+}
+
+input#Lname:valid{
+    border: 3px solid green;
+}
+
+input#password:invalid{
+    border: 3px solid red
+}
+
+input{
+    width: 178px;
+    border-radius:10px;
+    height: 24px;
+    padding: 5px;
+}
+
+input[type="email"],input[type="password"]{
+    width: 380px;
+}
+
+#contact{
+
+    background-color: #05445E;
+    box-shadow: inset 0px 0px 10px 4px ;
+    height: 170px;
+    padding: 40px;
+        
+}
