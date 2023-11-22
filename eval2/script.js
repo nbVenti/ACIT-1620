@@ -45,6 +45,7 @@ WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 */
 function getRand() {
     computer_choice = (Math.random() * 3);
+    console.log(computer_choice);
     return computer_choice;
 }
 
@@ -58,12 +59,25 @@ function play() {
     } else {
         computer_choice = "computer_scissors";
     }
+    console.log(computer_choice);
+
+
+    for (let u in document.getElementById("computer_choice").children) {
+        try {if (document.getElementById("computer_choice").children[u].style.display === "block") {
+            document.getElementById("computer_choice").children[u].style.border = "10px solid transparent";
+            document.getElementById("computer_choice").children[u].style.display = "none";
+        }} catch (error) {
+            console.log(error);}
+    }
+
     for (let u in document.getElementById("computer_choice").children) {
         if (document.getElementById("computer_choice").children[u].id === computer_choice) {
             document.getElementById("computer_choice").children[u].style.border = "10px solid black";
             document.getElementById("computer_choice").children[u].style.display = "block";
         }
+        
     }
+    
     document.getElementById("computer_choice").style.border = "10px solid transparent";
     document.getElementById("computer_choice").style.display = "block";
 
@@ -76,25 +90,14 @@ function play() {
         
     }
 
-    if (x === "rock" && computer_choice === "computer_rock") {
-        return 0;}
-    if (x === "rock" && computer_choice === "computer_paper") {
-        return -1;}
-    if (x === "rock" && computer_choice === "computer_scissors") {
-        return 1;}
-    if (x === "paper" && computer_choice === "computer_paper") {
-        return 0;}
-    if (x === "paper" && computer_choice === "computer_rock") {
-        return 1;}
-    if (x === "paper" && computer_choice === "computer_scissors") {
-        return -1;}
-    if (x === "scissors" && computer_choice === "computer_scissors") {
-        return 0;}
-    if (x === "scissors" && computer_choice === "computer_paper") {
-        return 1;}
-    if (x === "scissors" && computer_choice === "computer_rock") {
-        return -1;}
-}
+    if (x === "rock" && computer_choice === "computer_rock" || x === "paper" && computer_choice === "computer_paper" || x === "scissors" && computer_choice === "computer_scissors") {
+        return 0;};
+    if (x === "rock" && computer_choice === "computer_paper" || x === "paper" && computer_choice === "computer_scissors" || x === "scissors" && computer_choice === "computer_rock") {
+        return -1;};
+    if (x === "rock" && computer_choice === "computer_scissors" || x === "paper" && computer_choice === "computer_rock" || x === "scissors" && computer_choice === "computer_paper") {
+        return 1;};
+    
+    }
 
 function checkWinner(Result) {
     if (Result === 0) {
@@ -119,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         document.getElementById("computer_choice").style.border = "10px solid transparent";
         document.getElementById("computer_choice").style.display = "none";
+
         document.getElementById("result").textContent = "";
     
     });
