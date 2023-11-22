@@ -7,14 +7,15 @@ Q1: What is the purpose of the following line in the CSS file, and what does it 
     (0.5 mark)
 
 A1: WRITE YOUR ANSWER HERE.
-
+it keeps the content centered in its own div
 ------------------------------------------------------------------------------------------
 
 Q2: The play() method does not take any arguments. How does it know which image the player has selected?
     (0.5 mark)
 
 A2: WRITE YOUR ANSWER HERE.
-
+it doesnt 
+it will once you add the event listener and the paramenter to the play() function
 ------------------------------------------------------------------------------------------
 
 Q3: What can you say about the height of the #computer_choice element?
@@ -24,7 +25,9 @@ Q3: What can you say about the height of the #computer_choice element?
     (0.5 mark)
 
 A3: WRITE YOUR ANSWER HERE.
-
+it is 200px and relative to the width of the image
+the element contains the image of the computer's choice 
+i would change it to the height of the picture inside so it doesnt take up so much space
 ------------------------------------------------------------------------------------------
 
 Q4: We want to change the play function so that it now takes an argument.
@@ -34,14 +37,123 @@ Q4: We want to change the play function so that it now takes an argument.
 
 A4: WRITE YOUR ANSWER HERE.
 
+add parameter to the play() function and call on that parameter in the function
 ------------------------------------------------------------------------------------------
 
 WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 
 */
-
-function play() {
-    // complete this function
+function getRand() {
+    computer_choice = (Math.random() * 3);
+    return computer_choice;
 }
 
-// add code
+function play() {
+    computer_choice = getRand();
+    
+    if (computer_choice < 1) {
+        computer_choice = "computer_rock";
+    } else if (computer_choice < 2) {
+        computer_choice = "computer_paper";
+    } else {
+        computer_choice = "computer_scissors";
+    }
+    for (let u in document.getElementById("computer_choice").children) {
+        if (document.getElementById("computer_choice").children[u].id === computer_choice) {
+            document.getElementById("computer_choice").children[u].style.border = "10px solid black";
+            document.getElementById("computer_choice").children[u].style.display = "block";
+        }
+    }
+    document.getElementById("computer_choice").style.border = "10px solid transparent";
+    document.getElementById("computer_choice").style.display = "block";
+
+    let x = null;
+   
+    for (let i = 0; i < 3; i++) {
+        if (document.getElementById("player_choice").children[i].classList.contains("selected")){
+            x = document.getElementById("player_choice").children[i].id;
+        }
+        
+    }
+
+    if (x === "rock" && computer_choice === "computer_rock") {
+        return 0;}
+    if (x === "rock" && computer_choice === "computer_paper") {
+        return -1;}
+    if (x === "rock" && computer_choice === "computer_scissors") {
+        return 1;}
+    if (x === "paper" && computer_choice === "computer_paper") {
+        return 0;}
+    if (x === "paper" && computer_choice === "computer_rock") {
+        return 1;}
+    if (x === "paper" && computer_choice === "computer_scissors") {
+        return -1;}
+    if (x === "scissors" && computer_choice === "computer_scissors") {
+        return 0;}
+    if (x === "scissors" && computer_choice === "computer_paper") {
+        return 1;}
+    if (x === "scissors" && computer_choice === "computer_rock") {
+        return -1;}
+}
+
+function checkWinner(Result) {
+    if (Result === 0) {
+        document.getElementById("result").textContent = "Tie";
+        console.log("tie");
+    } else if (Result === 1) {
+        document.getElementById("result").textContent = "You Win";
+        console.log("win");
+    } else if (Result === -1){
+        document.getElementById("result").textContent = "You Lose";
+        console.log("lose");
+    }
+    document.getElementById("play-again").style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("play-again").addEventListener("click", (event) => {
+        document.getElementById("play-again").style.display = "none";
+        document.getElementById("rock").removeAttribute("class", "selected");
+        document.getElementById("paper").removeAttribute("class", "selected");
+        document.getElementById("scissors").removeAttribute("class", "selected");
+        
+        document.getElementById("computer_choice").style.border = "10px solid transparent";
+        document.getElementById("computer_choice").style.display = "none";
+        document.getElementById("result").textContent = "";
+    
+    });
+    let rock = document.getElementById("rock");
+    let paper = document.getElementById("paper");
+    let scissors = document.getElementById("scissors");
+    
+    rock.addEventListener("click", (event) => {
+        if (document.getElementById("play-again").style.display !== "block") {
+            rock.setAttribute("class", "selected");
+            paper.removeAttribute("class", "selected");
+            scissors.removeAttribute("class", "selected");
+            winner = play();
+            checkWinner(winner);}
+
+        });
+
+    paper.addEventListener("click", (event) => {
+        if (document.getElementById("play-again").style.display !== "block") {
+            rock.removeAttribute("class", "selected");
+            paper.setAttribute("class", "selected");
+            scissors.removeAttribute("class", "selected");
+            winner = play();
+            checkWinner(winner);}
+        });
+
+    scissors.addEventListener("click", (event) => {
+        if (document.getElementById("play-again").style.display !== "block"){
+            rock.removeAttribute("class", "selected");
+            paper.removeAttribute("class", "selected");
+            scissors.setAttribute("class", "selected");
+            winner = play();
+            checkWinner(winner);}
+        });
+    
+    
+
+});
