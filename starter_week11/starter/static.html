@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Todo application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="data.js"></script>
+    <script>console.log(taskData)</script>
+</head>
+
+<body>
+    <nav>
+        <h3>My tasks</h3>
+        <div>
+            <h4>
+                <a href="#">All tasks</a>
+            </h4>
+            <h4>
+                <a href="#">Pending</a>
+            </h4>
+            <h4>
+                <a href="#">Completed</a>
+            </h4>
+        </div>
+    </nav>
+    <main>
+        <section id = "modal_contents">
+            <header>
+                <h1>All tasks</h1>
+                <h3>2 tasks due, 4 tasks total</h3>
+            </header>
+        <ul id ="task_list">
+
+        </ul>    
+            
+        </section>
+        <hr>
+        <div id = "modal_form">
+            <section id="new_task">
+                <h3>Create new task</h3>
+
+                <input type="text" placeholder="Task title" id="new_task_title">
+                <textarea placeholder="Task description" id="new_task_description"></textarea>
+                <input type="date" id="new_task_due_date">
+
+                <button type="submit" id="save_task">Save task</button>
+                <button type="button" id="close_modal">Close</button>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

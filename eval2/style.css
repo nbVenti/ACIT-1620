@@ -1,0 +1,41 @@
+body {
+    margin: 0 auto;
+    width: 50vw;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#player_choice {
+    display: flex;
+    justify-content: space-around;
+}
+
+#player_choice img {
+    border: 10px solid transparent;
+}
+
+#player_choice img.selected {
+    border: 10px solid black;
+}
+
+#computer_choice {
+    position: relative;
+    height: 200px;
+}
+
+#computer_choice img {
+    display: none;
+    position: absolute;
+    left: calc(50% - 62px);
+}
+
+button#play-again {
+    display: none;
+    margin: 0 auto 10rem;
+    width: 40%;
+    padding: 2rem;
+    background-color: rgb(0, 150, 0);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}

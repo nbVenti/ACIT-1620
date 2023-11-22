@@ -24,8 +24,8 @@ const taskData = [
     }
 ]
 
-const showModal=() => document.getElementById("modal_form").style.display = "block";
-const hideModal=() => document.getElementById("modal_form").style.display = "none";
+const showModal = () => document.getElementById("modal_form").style.display = "block";
+const hideModal = () => document.getElementById("modal_form").style.display = "none";
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("closeModal").addEventListener("click", function() {
