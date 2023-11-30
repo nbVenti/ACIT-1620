@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
     <script src="data.js"></script>
-    <script>console.log(taskData)</script>
 </head>
 
 <body>
@@ -28,7 +27,8 @@
         <section id = "modal_contents">
             <header>
                 <h1>All tasks</h1>
-                <h3>2 tasks due, 4 tasks total</h3>
+                <h3 id="hw_tracker"></h3>
+                <button type="button" id="create_new">Create New Task</button> 
             </header>
         <ul id ="task_list">
 
@@ -38,7 +38,7 @@
         <hr>
         <div id = "modal_form">
             <section id="new_task">
-                <h3>Create new task</h3>
+                <h3 id="modal_name">Create new task</h3>
 
                 <input type="text" placeholder="Task title" id="new_task_title">
                 <textarea placeholder="Task description" id="new_task_description"></textarea>

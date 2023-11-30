@@ -72,7 +72,6 @@ function play() {
 
     for (let u in document.getElementById("computer_choice").children) {
         if (document.getElementById("computer_choice").children[u].id === computer_choice) {
-            document.getElementById("computer_choice").children[u].style.border = "10px solid black";
             document.getElementById("computer_choice").children[u].style.display = "block";
         }
         
