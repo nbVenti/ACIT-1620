@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (element.checked === false) {
                 console.log(index)
                 console.log(allTasks[index])
-            // allTasks[index].completed = false
+            allTasks[index].completed = false
             console.log(allTasks)
             
 
