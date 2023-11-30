@@ -197,16 +197,28 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     for (let element of document.getElementsByClassName("task_checkbox")) {
-        let index = element.id.split("_")[2];
-        document.getElementById("task_checkbox_" + index).addEventListener("click", function () {
+        let index = element.id.split("_")[2]-1;
+        let TBindex = element.id.split("_")[2] ;
+        
+        document.getElementById("task_checkbox_" + TBindex).addEventListener("click", function () {
+            
             if (element.checked === true) {
                 element.parentElement.style.backgroundColor = "green";
+                allTasks[index].completed = true;
                 localStorage.setItem("taskData", JSON.stringify(allTasks));
-            };
-            if (element.checked === false && element.parentElement.overdue === true && completed === false) {
-                element.parentElement.style.backgroundColor = "red";
             }
-            else {console.log("not overdue")
+            if (element.checked === false) {
+                console.log(index)
+                console.log(allTasks[index])
+            // allTasks[index].completed = false
+            console.log(allTasks)
+            
+
+            if (element.checked === false && overdue(index) === true && allTasks[index].completed === false) {
+                element.parentElement.style.backgroundColor = "red";
+                localStorage.setItem("taskData", JSON.stringify(allTasks));
+            }
+            else {console.log("not overdue")}
                 // console.log(document.getElementById(element.parentElement.id).id)}
                 // console.log(element.parentElement.overdue)
                 // console.log(element.parentElement.id)
@@ -215,21 +227,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 // // console.log(element.getElementById("task_" +index))
                 // // console.log(element.parentElement.overdue)
                 // console.log(element.parentElement)
-                overdue(index);
+                ;
 
     }}); 
 
     function overdue(index) {
-        console.log(("task_dueDate_" + index))
-        var d1 = new Date("task_dueDate_" + index.textContent)
-        var d2 = new Date()
+        let index2 = element.id.split("_")[2];
+        var d1 = new Date(((document.getElementById("task_dueDate_" + index2)).innerHTML));
+        var d2 = new Date();
 
         if (d2 > d1) {
-            console.log("overdue")
+            return true;
         }
         else {
-            console.log("not overdue")
-            console.log(d1+ "d1",d2 +"d2")
+            return false;
         }
     }
 
