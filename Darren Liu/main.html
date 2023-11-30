@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+
+    <script type="module">
+        import {counter, addOneToCounter} from './script.js';
+        const addOneButton = document.getElementById('add_one_button');
+        const counterElement = document.getElementById('counter');
+        addOneButton.addEventListener('click', () => {
+            addOneToCounter();
+            counterElement.innerText = counter;
+        });
+    </script>
+</head>
+<body>
+    <div id="main">  
+        <div id ="live_counter"> 
+            <h1 id="counter">0</h1>
+        </div>
+        <div id="add_one">
+            <button id="add_one_button">Add one</button>
+
+        </div>
+    </div>
+</body>
+</html>

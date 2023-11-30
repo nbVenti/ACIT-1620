@@ -1,3 +1,30 @@
+// const taskData = [
+//     {
+//         title: "First task",
+//         description: "Just an example task. The description contains text.",
+//         dueDate: "2024-01-01",
+//     },
+//     {
+//         title: "Task (overdue)",
+//         description: "This task is overdue (due in the past)",
+//         dueDate: "2023-11-10",
+//         completed: false
+//     },
+//     {
+//         title: "Another task (completed)",
+//         description: "This task has the property completed: true",
+//         dueDate: "2023-10-10",
+//         completed: true,
+//     },
+//     {
+//         title: "Another completed task",
+//         description: "This task is completed but the due date was before the other one",
+//         dueDate: "2023-06-01",
+//         completed: true
+//     }
+// ]
+// localStorage.setItem("taskData", JSON.stringify(taskData));
+
 const allTasks = JSON.parse(localStorage.getItem("taskData"));
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -67,9 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (d2 > d1) {
             newTask.style.backgroundColor = "red";
+            newTask.setAttribute("overdue", "false");
         }
         if (i.completed === true) {
             newTask.style.backgroundColor = "green";
+
             number_completed++;
         }
     }
@@ -82,18 +111,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     for (let element of document.getElementsByClassName("edit_task")) {
-
+        let index = element.id.split("_")[2] - 1;
         element.addEventListener("click", function () {
             document.getElementById("modal_form").style.display = "block";
             document.getElementById("modal_name").innerHTML = "Edit Task";
+            document.getElementById("new_task_title").value = allTasks[index]["title"];
+            document.getElementById("new_task_description").value = allTasks[index]["description"];
+            document.getElementById("new_task_due_date").value = allTasks[index]["dueDate"];
             document.getElementById("save_task").addEventListener("click", (event) => {
-                let index = element.id.split("_")[2] - 1;
-                let newTitle = MakeTitle();
-                let newDescription = MakeDescription();
-                let newDueDate = MakeDueDate();
-                allTasks[index]["title"] = newTitle
-                allTasks[index]["description"] = newDescription;
-                allTasks[index]["dueDate"] = newDueDate;
+                // let index = element.id.split("_")[2] - 1;
+                // let newTitle = MakeTitle();
+                // let newDescription = MakeDescription();
+                // let newDueDate = MakeDueDate();
+                allTasks[index]["title"] = MakeTitle();
+                allTasks[index]["description"] = MakeDescription();
+                allTasks[index]["dueDate"] = MakeDueDate();
                 console.log(allTasks[index - 1])
                 loadData();
 
@@ -112,6 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("create_new").addEventListener("click", (event) => {
         document.getElementById("modal_form").style.display = "block";
         document.getElementById("modal_name").innerHTML = "Create New Task";
+        document.getElementById("new_task_title").value = "";
+        document.getElementById("new_task_description").value = "";
         document.getElementById("save_task").addEventListener("click", (event) => {
             // let title = newTitle();
             // let description = newDescription();
@@ -120,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 title: MakeTitle(),
                 description: MakeDescription(),
                 dueDate: MakeDueDate(),
-                completed: false
             };
             allTasks.push(newTask);
             loadData();
@@ -163,19 +196,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    for (let element of document.getElementsByClassName("task_checkbox")){
-        let index = element.id.split("_")[2]
+    for (let element of document.getElementsByClassName("task_checkbox")) {
+        let index = element.id.split("_")[2];
+        document.getElementById("task_checkbox_" + index).addEventListener("click", function () {
+            if (element.checked === true) {
+                element.parentElement.style.backgroundColor = "green";
+                localStorage.setItem("taskData", JSON.stringify(allTasks));
+            };
+            if (element.checked === false && element.parentElement.overdue === true && completed === false) {
+                element.parentElement.style.backgroundColor = "red";
+            }
+            else {console.log("not overdue")
+                // console.log(document.getElementById(element.parentElement.id).id)}
+                // console.log(element.parentElement.overdue)
+                // console.log(element.parentElement.id)
+                // console.log(element.id)
+                // console.log(element.parentElement.id.overdue)
+                // // console.log(element.getElementById("task_" +index))
+                // // console.log(element.parentElement.overdue)
+                // console.log(element.parentElement)
+                overdue(index);
 
+    }}); 
 
-        if (element.checked === true) {
-            console.log(allTasks)
-            console.log(element)
-            console.log(element.parentElement)
-            element.parentElement.style.backgroundColor="green";
-            console.log(allTasks)
-            allTasks[index].completed = true
-            localStorage.setItem("taskData", JSON.stringify(allTasks));
-        };
+    function overdue(index) {
+        console.log(("task_dueDate_" + index))
+        var d1 = new Date("task_dueDate_" + index.textContent)
+        var d2 = new Date()
+
+        if (d2 > d1) {
+            console.log("overdue")
+        }
+        else {
+            console.log("not overdue")
+            console.log(d1+ "d1",d2 +"d2")
+        }
+    }
 
         // try {
         //     if (element.checked === false && completed === true) {
