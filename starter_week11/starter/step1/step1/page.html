@@ -5,7 +5,10 @@
     <title>Todo application</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
-    <script src="data.js"></script>
+    <script src="script1.js"></script>
+    <script>
+        // saveTasks(taskData)
+    </script>
 </head>
 
 <body>
@@ -24,28 +27,26 @@
         </div>
     </nav>
     <main>
-        <section id = "modal_contents">
+        <article>
             <header>
                 <h1>All tasks</h1>
-                <h3 id="hw_tracker"></h3>
-                <button type="button" id="create_new">Create New Task</button> 
+                <h3 id="task_summary"></h3>
             </header>
-        <ul id ="task_list">
+            <ul id="task_list">
 
-        </ul>    
-            
-        </section>
-        <hr>
-        <div id = "modal_form">
+            </ul>
+        </article>
+        <button id="add_task_modal">Create task</button>
+        <div id="modal_form">
             <section id="new_task">
-                <h3 id="modal_name">Create new task</h3>
-                <input type="hidden" id ="hiddenId" value='-1'>
-                <input type="text" placeholder="Task title" id="new_task_title">
-                <textarea placeholder="Task description" id="new_task_description"></textarea>
-                <input type="date" id="new_task_due_date">
+                <h3>Create new task</h3>
+                <input type="hidden" type="text" id="task_id" value="-1">
+                <input type="text" placeholder="Task title" id="task_title">
+                <textarea placeholder="Task description" id="task_description"></textarea>
+                <input type="date" id="task_due_date">
 
                 <button type="submit" id="save_task">Save task</button>
-                <button type="button" id="close_modal">Close</button>
+                <button id="close_modal">Close</button>
             </section>
         </div>
     </main>
