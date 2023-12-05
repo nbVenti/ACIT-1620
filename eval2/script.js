@@ -43,20 +43,16 @@ add parameter to the play() function and call on that parameter in the function
 WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 
 */
-function getRand() {
-    computer_choice = (Math.random() * 3);
-    return computer_choice;
-}
 
 function play() {
-    computer_choice = getRand();
+    computer_choice = (Math.random() * 3);
     
     if (computer_choice < 1) {
-        computer_choice = "computer_rock";
+        computer_choice = "rock";
     } else if (computer_choice < 2) {
-        computer_choice = "computer_paper";
+        computer_choice = "paper";
     } else {
-        computer_choice = "computer_scissors";
+        computer_choice = "scissors";
     }
 
 
@@ -68,7 +64,7 @@ function play() {
     }
 
     for (let u in document.getElementById("computer_choice").children) {
-        if (document.getElementById("computer_choice").children[u].id === computer_choice) {
+        if (document.getElementById("computer_choice").children[u].id === "computer_"+computer_choice) {
             document.getElementById("computer_choice").children[u].style.display = "block";
         }
         
@@ -78,7 +74,6 @@ function play() {
     document.getElementById("computer_choice").style.display = "block";
 
     let x = null;
-   
     for (let i = 0; i < 3; i++) {
         if (document.getElementById("player_choice").children[i].classList.contains("selected")){
             x = document.getElementById("player_choice").children[i].id;
@@ -86,11 +81,11 @@ function play() {
         
     }
 
-    if (x === "rock" && computer_choice === "computer_rock" || x === "paper" && computer_choice === "computer_paper" || x === "scissors" && computer_choice === "computer_scissors") {
-        return 0;};
-    if (x === "rock" && computer_choice === "computer_paper" || x === "paper" && computer_choice === "computer_scissors" || x === "scissors" && computer_choice === "computer_rock") {
-        return -1;};
-    if (x === "rock" && computer_choice === "computer_scissors" || x === "paper" && computer_choice === "computer_rock" || x === "scissors" && computer_choice === "computer_paper") {
+    if (x === computer_choice) {
+        return 0;}
+    else if (x === "rock" && computer_choice === "paper" || x === "paper" && computer_choice === "scissors" || x === "scissors" && computer_choice === "rock") {
+        return -1;}
+    else {
         return 1;};
     
     }
@@ -124,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("result").textContent = "";
     
     });
-    rock.addEventListener("click", (event) => {
+    rock.addEventListener("click", () => {
         if (document.getElementById("play-again").style.display !== "block") {
             rock.classList.add("selected");
             winner = play();
@@ -132,14 +127,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-    paper.addEventListener("click", (event) => {
+    paper.addEventListener("click", () => {
         if (document.getElementById("play-again").style.display !== "block") {
             paper.setAttribute("class", "selected");
             winner = play();
             checkWinner(winner);}
         });
 
-    scissors.addEventListener("click", (event) => {
+    scissors.addEventListener("click", () => {
         if (document.getElementById("play-again").style.display !== "block"){
             scissors.setAttribute("class", "selected");
             winner = play();
