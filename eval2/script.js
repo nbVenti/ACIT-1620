@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let rock = document.getElementById("rock");
     let paper = document.getElementById("paper");
     let scissors = document.getElementById("scissors");
+    let comp_choice = document.getElementById("computer_choice");
 
     document.getElementById("play-again").addEventListener("click", (event) => {
         
@@ -114,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
         paper.classList.remove("selected");
         scissors.classList.remove("selected");
         
-        document.getElementById("computer_choice").style.border = "10px solid transparent";
-        document.getElementById("computer_choice").style.display = "none";
+        comp_choice.style.border = "10px solid transparent";
+        comp_choice.style.display = "none";
 
         document.getElementById("result").textContent = "";
     
