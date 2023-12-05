@@ -30,9 +30,9 @@ const showModal = () => document.getElementById("modal_form").style.display = "b
 const hideModal = () => document.getElementById("modal_form").style.display = "none"
 
 function reload() {
-    document.getElementById("task_list").innerHTML= "";
-    document.getElementById("hw_tracker").innerHTML= "";
-    document.getElementById("hiddenId").value =-1;
+    document.getElementById("task_list").innerHTML = "";
+    document.getElementById("hw_tracker").innerHTML = "";
+    document.getElementById("hiddenId").value = -1;
     makeTasks();
     recall();
 };
@@ -131,13 +131,15 @@ function editTask(element) {
     document.getElementById("new_task_description").value = allTasks[index]["description"];
     document.getElementById("new_task_due_date").value = allTasks[index]["dueDate"];
     document.getElementById("modal_form").addEventListener("click", (event) => {
-        if (event.target.id !== "save_task")  {
-        allTasks[index]["title"] = allTasks[index]["title"];
-        allTasks[index]["description"] = allTasks[index]["description"];
-        allTasks[index]["dueDate"] = allTasks[index]["dueDate"];
-        return null}});
+        if (event.target.id !== "save_task") {
+            allTasks[index]["title"] = allTasks[index]["title"];
+            allTasks[index]["description"] = allTasks[index]["description"];
+            allTasks[index]["dueDate"] = allTasks[index]["dueDate"];
+            return null
+        }
+    });
     document.getElementById("modal_form").addEventListener("click", (event) => {
-        if (event.target.id=== "save_task") { 
+        if (event.target.id === "save_task") {
             event.stopPropagation();
             // let index = element.id.split("_")[2] - 1;
             // let newTitle = MakeTitle();
@@ -146,31 +148,34 @@ function editTask(element) {
             allTasks[index]["title"] = MakeTitle();
             allTasks[index]["description"] = MakeDescription();
             allTasks[index]["dueDate"] = MakeDueDate();
-        loadData();}
+            loadData();
+        }
     });
 };
 
-function createNewTask(){
+function createNewTask() {
     showModal()
     document.getElementById("modal_name").innerHTML = "Create New Task";
     document.getElementById("new_task_title").value = "";
     document.getElementById("new_task_description").value = "";
     document.getElementById("modal_form").addEventListener("click", (event) => {
-        if (event.target.id === "save_task") {
-            event.stopPropagation();
-            // let title = newTitle();
-            // let description = newDescription();
-            // let dueDate = newDueDate();
-            let newTask = {
-                title: MakeTitle(),
-                description: MakeDescription(),
-                dueDate: MakeDueDate(),
-            };
-            allTasks.push(newTask);
-            loadData();
-        }
+        for (let i=0; i < 1; i++){
+            if (event.target.id === "save_task") {
+                event.stopPropagation();
+                // let title = newTitle();
+                // let description = newDescription();
+                // let dueDate = newDueDate();
+                let newTask = {
+                    title: MakeTitle(),
+                    description: MakeDescription(),
+                    dueDate: MakeDueDate(),
+                };
+                allTasks.push(newTask);
+                loadData();
+                
+        }}
     });
-};    
+};
 
 function MakeTitle() {
     var input = document.getElementById("new_task_title").value;
@@ -208,7 +213,7 @@ function deleteTask(element) {
     allTasks.splice(index - 1, 1);
     loadData();
 
-    };
+};
 
 
 function checkOverdue() {
@@ -225,12 +230,13 @@ function checkOverdue() {
             }
             if (element.checked === false) {
                 allTasks[index].completed = false
+            }
 
             if (element.checked === false && overdue(TBindex) === true && allTasks[index].completed === false) {
                 element.parentElement.style.backgroundColor = "red";
                 localStorage.setItem("taskData", JSON.stringify(allTasks));
             }
-            else { console.log("not overdue")}
+            else { console.log("not overdue") }
 
             if (element.checked === false && overdue(TBindex) === false && allTasks[index].completed === false) {
                 element.parentElement.style.backgroundColor = "white";
@@ -245,21 +251,21 @@ function checkOverdue() {
             // console.log(element.parentElement)
             ;
 
-            }
+        
         });
     };
 
-function overdue(index) {
-    var d1 = new Date((document.getElementById("task_dueDate_" + index)).innerHTML);
-    var d2 = new Date();
+    function overdue(index) {
+        var d1 = new Date((document.getElementById("task_dueDate_" + index)).innerHTML);
+        var d2 = new Date();
 
-    if (d2 > d1) {
-        return true;
+        if (d2 > d1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-    else {
-        return false;
-    }
-}
 };
 
 function recall() {
@@ -281,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("modal_contents").addEventListener("click", (event) => {
-        for (let element of document.getElementsByClassName("delete_task"))  {
+        for (let element of document.getElementsByClassName("delete_task")) {
             if (element.id === event.target.id)
                 deleteTask(element);
         };
@@ -292,8 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     });
 
-    document.getElementById("create_new").addEventListener("click", (event) => {
-        createNewTask()
-        return null
+    document.getElementById("create_new").addEventListener("click", function () {
+        console.log("create new task")
+        createNewTask();
     });
 });
