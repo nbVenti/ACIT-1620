@@ -45,7 +45,7 @@ WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 */
 
 function play() {
-    computer_choice = (Math.random() * 3);
+    let computer_choice = (Math.random() * 3);
     
     if (computer_choice < 1) {
         computer_choice = "rock";
@@ -54,24 +54,25 @@ function play() {
     } else {
         computer_choice = "scissors";
     }
+    
+    let comp_choice = document.getElementById("computer_choice");
 
-
-    for (let u in document.getElementById("computer_choice").children) {
-        try {if (document.getElementById("computer_choice").children[u].style.display === "block") {
-            document.getElementById("computer_choice").children[u].style.border = "10px solid transparent";
-            document.getElementById("computer_choice").children[u].style.display = "none";
+    for (let u in comp_choice.children) {
+        try {if (comp_choice.children[u].style.display === "block") {
+            comp_choice.children[u].style.border = "10px solid transparent";
+            comp_choice.children[u].style.display = "none";
         }} catch (error) {}
     }
 
-    for (let u in document.getElementById("computer_choice").children) {
-        if (document.getElementById("computer_choice").children[u].id === "computer_"+computer_choice) {
-            document.getElementById("computer_choice").children[u].style.display = "block";
+    for (let u in comp_choice.children) {
+        if (comp_choice.children[u].id === "computer_" + computer_choice) {
+            comp_choice.children[u].style.display = "block";
         }
         
     }
     
-    document.getElementById("computer_choice").style.border = "10px solid transparent";
-    document.getElementById("computer_choice").style.display = "block";
+    comp_choice.style.border = "10px solid transparent";
+    comp_choice.style.display = "block";
 
     let x = null;
     for (let i = 0; i < 3; i++) {
