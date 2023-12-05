@@ -45,7 +45,6 @@ WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 */
 function getRand() {
     computer_choice = (Math.random() * 3);
-    console.log(computer_choice);
     return computer_choice;
 }
 
@@ -59,15 +58,13 @@ function play() {
     } else {
         computer_choice = "computer_scissors";
     }
-    console.log(computer_choice);
 
 
     for (let u in document.getElementById("computer_choice").children) {
         try {if (document.getElementById("computer_choice").children[u].style.display === "block") {
             document.getElementById("computer_choice").children[u].style.border = "10px solid transparent";
             document.getElementById("computer_choice").children[u].style.display = "none";
-        }} catch (error) {
-            console.log(error);}
+        }} catch (error) {}
     }
 
     for (let u in document.getElementById("computer_choice").children) {
@@ -101,23 +98,25 @@ function play() {
 function checkWinner(Result) {
     if (Result === 0) {
         document.getElementById("result").textContent = "Tie";
-        console.log("tie");
     } else if (Result === 1) {
         document.getElementById("result").textContent = "You Win";
-        console.log("win");
     } else if (Result === -1){
         document.getElementById("result").textContent = "You Lose";
-        console.log("lose");
     }
     document.getElementById("play-again").style.display = "block";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    let rock = document.getElementById("rock");
+    let paper = document.getElementById("paper");
+    let scissors = document.getElementById("scissors");
+
     document.getElementById("play-again").addEventListener("click", (event) => {
+        
         document.getElementById("play-again").style.display = "none";
-        document.getElementById("rock").removeAttribute("class", "selected");
-        document.getElementById("paper").removeAttribute("class", "selected");
-        document.getElementById("scissors").removeAttribute("class", "selected");
+        rock.classList.remove("selected");
+        paper.classList.remove("selected");
+        scissors.classList.remove("selected");
         
         document.getElementById("computer_choice").style.border = "10px solid transparent";
         document.getElementById("computer_choice").style.display = "none";
@@ -125,16 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("result").textContent = "";
     
     });
-
-    let rock = document.getElementById("rock");
-    let paper = document.getElementById("paper");
-    let scissors = document.getElementById("scissors");
-    
     rock.addEventListener("click", (event) => {
         if (document.getElementById("play-again").style.display !== "block") {
-            rock.setAttribute("class", "selected");
-            paper.removeAttribute("class", "selected");
-            scissors.removeAttribute("class", "selected");
+            rock.classList.add("selected");
             winner = play();
             checkWinner(winner);}
 
@@ -142,17 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     paper.addEventListener("click", (event) => {
         if (document.getElementById("play-again").style.display !== "block") {
-            rock.removeAttribute("class", "selected");
             paper.setAttribute("class", "selected");
-            scissors.removeAttribute("class", "selected");
             winner = play();
             checkWinner(winner);}
         });
 
     scissors.addEventListener("click", (event) => {
         if (document.getElementById("play-again").style.display !== "block"){
-            rock.removeAttribute("class", "selected");
-            paper.removeAttribute("class", "selected");
             scissors.setAttribute("class", "selected");
             winner = play();
             checkWinner(winner);}
