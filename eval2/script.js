@@ -46,7 +46,7 @@ WRITE YOUR CODE BELOW OUTSIDE OF THE COMMENT.
 
 function play() {
     let computer_choice = (Math.random() * 3);
-    
+
     if (computer_choice < 1) {
         computer_choice = "rock";
     } else if (computer_choice < 2) {
@@ -54,49 +54,54 @@ function play() {
     } else {
         computer_choice = "scissors";
     }
-    
+
     let comp_choice = document.getElementById("computer_choice");
 
     for (let u in comp_choice.children) {
-        try {if (comp_choice.children[u].style.display === "block") {
-            comp_choice.children[u].style.border = "10px solid transparent";
-            comp_choice.children[u].style.display = "none";
-        }} catch (error) {}
+        try {
+            if (comp_choice.children[u].style.display === "block") {
+                comp_choice.children[u].style.border = "10px solid transparent";
+                comp_choice.children[u].style.display = "none";
+            }
+        } catch (error) { }
     }
 
     for (let u in comp_choice.children) {
         if (comp_choice.children[u].id === "computer_" + computer_choice) {
             comp_choice.children[u].style.display = "block";
         }
-        
+
     }
-    
+
     comp_choice.style.border = "10px solid transparent";
     comp_choice.style.display = "block";
 
     let x = null;
     for (let i = 0; i < 3; i++) {
-        if (document.getElementById("player_choice").children[i].classList.contains("selected")){
+        if (document.getElementById("player_choice").children[i].classList.contains("selected")) {
             x = document.getElementById("player_choice").children[i].id;
         }
-        
+
     }
 
     if (x === computer_choice) {
-        return 0;}
-    else if (x === "rock" && computer_choice === "paper" || x === "paper" && computer_choice === "scissors" || x === "scissors" && computer_choice === "rock") {
-        return -1;}
-    else {
-        return 1;};
-    
+        return 0;
     }
+    else if (x === "rock" && computer_choice === "paper" || x === "paper" && computer_choice === "scissors" || x === "scissors" && computer_choice === "rock") {
+        return -1;
+    }
+    else {
+        return 1;
+    };
+
+}
 
 function checkWinner(Result) {
     if (Result === 0) {
         document.getElementById("result").textContent = "Tie";
     } else if (Result === 1) {
         document.getElementById("result").textContent = "You Win";
-    } else if (Result === -1){
+    } else if (Result === -1) {
         document.getElementById("result").textContent = "You Lose";
     }
     document.getElementById("play-again").style.display = "block";
@@ -109,40 +114,43 @@ document.addEventListener("DOMContentLoaded", () => {
     let comp_choice = document.getElementById("computer_choice");
 
     document.getElementById("play-again").addEventListener("click", (event) => {
-        
+
         document.getElementById("play-again").style.display = "none";
         rock.classList.remove("selected");
         paper.classList.remove("selected");
         scissors.classList.remove("selected");
-        
+
         comp_choice.style.border = "10px solid transparent";
         comp_choice.style.display = "none";
 
         document.getElementById("result").textContent = "";
-    
+
     });
     rock.addEventListener("click", () => {
         if (document.getElementById("play-again").style.display !== "block") {
             rock.classList.add("selected");
             winner = play();
-            checkWinner(winner);}
+            checkWinner(winner);
+        }
 
-        });
+    });
 
     paper.addEventListener("click", () => {
         if (document.getElementById("play-again").style.display !== "block") {
             paper.setAttribute("class", "selected");
             winner = play();
-            checkWinner(winner);}
-        });
+            checkWinner(winner);
+        }
+    });
 
     scissors.addEventListener("click", () => {
-        if (document.getElementById("play-again").style.display !== "block"){
+        if (document.getElementById("play-again").style.display !== "block") {
             scissors.setAttribute("class", "selected");
             winner = play();
-            checkWinner(winner);}
-        });
-    
-    
+            checkWinner(winner);
+        }
+    });
+
+
 
 });
