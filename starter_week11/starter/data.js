@@ -228,7 +228,7 @@ function checkOverdue() {
             else { console.log("not overdue") }
 
             if (element.checked === false && overdue(TBindex) === false && allTasks[index].completed === false) {
-                element.parentElement.style.backgroundColor = "white";
+                element.parentElement.style.backgroundColor = "";
             }
             // console.log(document.getElementById(element.parentElement.id).id)}
             // console.log(element.parentElement.overdue)
@@ -262,7 +262,8 @@ function createNewTask() {
     if (document.getElementById("modal_name").innerHTML !== "Create New Task") {
         document.getElementById("modal_name").innerHTML = "Create New Task";
         document.getElementById("new_task_title").value = null;
-        document.getElementById("new_task_description").value = " ";
+        document.getElementById("new_task_description").value = null;
+        document.getElementById("new_task_due_date").value = null;
         document.getElementById("save_task").addEventListener("click", (event) => {
             if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Create New Task" && document.getElementById("hiddenId").value === "0") {
                 let newTask = {
@@ -272,7 +273,10 @@ function createNewTask() {
                 };
                 allTasks.push(newTask);
                 loadData();
-            } else {console.log(event.target.id,document.getElementById("modal_name").innerHTML, document.getElementById("hiddenId").value)}
+            } else {
+                console.log(event.target.id, document.getElementById("modal_name").innerHTML, document.getElementById("hiddenId").value);
+                hideModal();
+            }
         });
     };
 };
@@ -344,7 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === "ArrowLeft") {
+            location.reload();
+            asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj();
+        } else (console.log(event.key))
+    });
 });
 
-
-asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj()
