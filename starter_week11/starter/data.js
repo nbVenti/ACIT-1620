@@ -1,3 +1,5 @@
+function asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj() {
+
 const taskData = [
     {
         title: "First task",
@@ -23,11 +25,13 @@ const taskData = [
         completed: true
     }
 ]
-localStorage.setItem("taskData", JSON.stringify(taskData));
+localStorage.setItem("taskData", JSON.stringify(taskData)); }
+
 
 const allTasks = JSON.parse(localStorage.getItem("taskData"));
 const showModal = () => document.getElementById("modal_form").style.display = "block"
-const hideModal = () => document.getElementById("modal_form").style.display = "none"
+const hideModal = () => {document.getElementById("modal_form").style.display = "none"; document.getElementById("new_task_title").value = ""; document.getElementById("new_task_description").value = "";  document.getElementById("new_task_due_date").value = "";}
+
 
 function reload() {
     document.getElementById("task_list").innerHTML = "";
@@ -123,58 +127,37 @@ function editTask(element) {
     if (element === undefined) {
         return null;
     }
+    console.log(element)
     let index = element.id.split("_")[2] - 1;
 
-    document.getElementById("modal_form").style.display = "block";
-    document.getElementById("modal_name").innerHTML = "Edit Task";
-    document.getElementById("new_task_title").value = allTasks[index]["title"];
-    document.getElementById("new_task_description").value = allTasks[index]["description"];
-    document.getElementById("new_task_due_date").value = allTasks[index]["dueDate"];
-    document.getElementById("modal_form").addEventListener("click", (event) => {
-        if (event.target.id !== "save_task") {
-            allTasks[index]["title"] = allTasks[index]["title"];
-            allTasks[index]["description"] = allTasks[index]["description"];
-            allTasks[index]["dueDate"] = allTasks[index]["dueDate"];
-            return null
-        }
-    });
-    document.getElementById("modal_form").addEventListener("click", (event) => {
-        if (event.target.id === "save_task") {
-            event.stopPropagation();
-            // let index = element.id.split("_")[2] - 1;
-            // let newTitle = MakeTitle();
-            // let newDescription = MakeDescription();
-            // let newDueDate = MakeDueDate();
-            allTasks[index]["title"] = MakeTitle();
-            allTasks[index]["description"] = MakeDescription();
-            allTasks[index]["dueDate"] = MakeDueDate();
-            loadData();
-        }
-    });
-};
-
-function createNewTask() {
-    showModal()
-    document.getElementById("modal_name").innerHTML = "Create New Task";
-    document.getElementById("new_task_title").value = "";
-    document.getElementById("new_task_description").value = "";
-    document.getElementById("modal_form").addEventListener("click", (event) => {
-        for (let i=0; i < 1; i++){
-            if (event.target.id === "save_task") {
+    showModal();
+    if (document.getElementById("modal_name").innerHTML !== "Edit Task") {
+        document.getElementById("modal_name").innerHTML = "Edit Task";
+        document.getElementById("new_task_title").value = allTasks[index]["title"];
+        document.getElementById("new_task_description").value = allTasks[index]["description"];
+        document.getElementById("new_task_due_date").value = allTasks[index]["dueDate"];
+        // document.getElementById("modal_form").addEventListener("click", (event) => {
+        //     if (event.target.id !== "save_task") {
+        //         allTasks[index]["title"] = allTasks[index]["title"];
+        //         allTasks[index]["description"] = allTasks[index]["description"];
+        //         allTasks[index]["dueDate"] = allTasks[index]["dueDate"];
+        //         return null
+        //     }
+        // });
+        document.getElementById("modal_form").addEventListener("click", (event) => {
+            if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Edit Task") {
                 event.stopPropagation();
-                // let title = newTitle();
-                // let description = newDescription();
-                // let dueDate = newDueDate();
-                let newTask = {
-                    title: MakeTitle(),
-                    description: MakeDescription(),
-                    dueDate: MakeDueDate(),
-                };
-                allTasks.push(newTask);
+                // let index = element.id.split("_")[2] - 1;
+                // let newTitle = MakeTitle();
+                // let newDescription = MakeDescription();
+                // let newDueDate = MakeDueDate();
+                allTasks[index]["title"] = MakeTitle();
+                allTasks[index]["description"] = MakeDescription();
+                allTasks[index]["dueDate"] = MakeDueDate();
                 loadData();
-                
-        }}
-    });
+            }
+        });
+    }
 };
 
 function MakeTitle() {
@@ -215,7 +198,6 @@ function deleteTask(element) {
 
 };
 
-
 function checkOverdue() {
     for (let element of document.getElementsByClassName("task_checkbox")) {
         let index = element.id.split("_")[2] - 1;
@@ -251,7 +233,7 @@ function checkOverdue() {
             // console.log(element.parentElement)
             ;
 
-        
+
         });
     };
 
@@ -266,6 +248,30 @@ function checkOverdue() {
             return false;
         }
     }
+};
+
+function createNewTask() {
+    showModal()
+    if (document.getElementById("modal_name").innerHTML !== "Create New Task") {
+        document.getElementById("modal_name").innerHTML = "Create New Task";
+        document.getElementById("new_task_title").value = null;
+        document.getElementById("new_task_description").value = " ";
+        document.getElementById("save_task").addEventListener("click", (event) => {
+            if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Create New Task") {
+                // let title = newTitle();
+                // let description = newDescription();
+                // let dueDate = newDueDate();
+                let newTask = {
+                    title: MakeTitle(),
+                    description: MakeDescription(),
+                    dueDate: MakeDueDate(),
+                };
+                console.log(newTask)
+                allTasks.push(newTask);
+                loadData();
+            }
+        });
+    };
 };
 
 function recall() {
@@ -303,3 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
         createNewTask();
     });
 });
+
+
+asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj()
