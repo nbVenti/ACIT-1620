@@ -1,36 +1,42 @@
 function asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj() {
 
-const taskData = [
-    {
-        title: "First task",
-        description: "Just an example task. The description contains text.",
-        dueDate: "2024-01-01",
-    },
-    {
-        title: "Task (overdue)",
-        description: "This task is overdue (due in the past)",
-        dueDate: "2023-11-10",
-        completed: false
-    },
-    {
-        title: "Another task (completed)",
-        description: "This task has the property completed: true",
-        dueDate: "2023-10-10",
-        completed: true,
-    },
-    {
-        title: "Another completed task",
-        description: "This task is completed but the due date was before the other one",
-        dueDate: "2023-06-01",
-        completed: true
-    }
-]
-localStorage.setItem("taskData", JSON.stringify(taskData)); }
+    const taskData = [
+        {
+            title: "First task",
+            description: "Just an example task. The description contains text.",
+            dueDate: "2024-01-01",
+        },
+        {
+            title: "Task (overdue)",
+            description: "This task is overdue (due in the past)",
+            dueDate: "2023-11-10",
+            completed: false
+        },
+        {
+            title: "Another task (completed)",
+            description: "This task has the property completed: true",
+            dueDate: "2023-10-10",
+            completed: true,
+        },
+        {
+            title: "Another completed task",
+            description: "This task is completed but the due date was before the other one",
+            dueDate: "2023-06-01",
+            completed: true
+        }
+    ]
+    localStorage.setItem("taskData", JSON.stringify(taskData));
+}
 
 
 const allTasks = JSON.parse(localStorage.getItem("taskData"));
 const showModal = () => document.getElementById("modal_form").style.display = "block"
-const hideModal = () => {document.getElementById("modal_form").style.display = "none"; document.getElementById("new_task_title").value = ""; document.getElementById("new_task_description").value = "";  document.getElementById("new_task_due_date").value = "";}
+function hideModal() {
+    document.getElementById("modal_form").style.display = "none";
+    document.getElementById("new_task_title").value = "";
+    document.getElementById("new_task_description").value = "";
+    document.getElementById("new_task_due_date").value = "";
+}
 
 
 function reload() {
@@ -145,8 +151,7 @@ function editTask(element) {
         //     }
         // });
         document.getElementById("modal_form").addEventListener("click", (event) => {
-            if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Edit Task") {
-                event.stopPropagation();
+            if (event.target.id === "save_task" && document.getElementById("hiddenId").value === "1") {
                 // let index = element.id.split("_")[2] - 1;
                 // let newTitle = MakeTitle();
                 // let newDescription = MakeDescription();
@@ -154,8 +159,10 @@ function editTask(element) {
                 allTasks[index]["title"] = MakeTitle();
                 allTasks[index]["description"] = MakeDescription();
                 allTasks[index]["dueDate"] = MakeDueDate();
+                hideModal();
                 loadData();
-            }
+            } else { console.log(event.target.id, document.getElementById("hiddenId").value) }
+
         });
     }
 };
@@ -184,8 +191,8 @@ function MakeDueDate() {
 
 function loadData() {
     localStorage.setItem("taskData", JSON.stringify(allTasks));
-    reload();
     hideModal();
+    reload();
 };
 
 function deleteTask(element) {
@@ -257,19 +264,15 @@ function createNewTask() {
         document.getElementById("new_task_title").value = null;
         document.getElementById("new_task_description").value = " ";
         document.getElementById("save_task").addEventListener("click", (event) => {
-            if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Create New Task") {
-                // let title = newTitle();
-                // let description = newDescription();
-                // let dueDate = newDueDate();
+            if (event.target.id === "save_task" && document.getElementById("modal_name").innerHTML === "Create New Task" && document.getElementById("hiddenId").value === "0") {
                 let newTask = {
                     title: MakeTitle(),
                     description: MakeDescription(),
                     dueDate: MakeDueDate(),
                 };
-                console.log(newTask)
                 allTasks.push(newTask);
                 loadData();
-            }
+            } else {console.log(event.target.id,document.getElementById("modal_name").innerHTML, document.getElementById("hiddenId").value)}
         });
     };
 };
@@ -283,7 +286,7 @@ function recall() {
 document.addEventListener("DOMContentLoaded", () => {
     reload();
 
-    document.getElementById("close_modal").addEventListener("click", hideModal)
+    document.getElementById("close_modal").addEventListener("click", hideModal())
 
     document.getElementById("modal_form").addEventListener("click", (event) => {
         if (event.target.id === "modal_form") {
@@ -294,19 +297,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("modal_contents").addEventListener("click", (event) => {
         for (let element of document.getElementsByClassName("delete_task")) {
-            if (element.id === event.target.id)
+            if (element.id === event.target.id) {
+
                 deleteTask(element);
+            }
         };
 
         for (let element of document.getElementsByClassName("edit_task")) {
-            if (element.id === event.target.id)
-                editTask(element);
+            if (element.id === event.target.id) {
+                document.getElementById("hiddenId").value = 1
+                editTask(element)
+            }
         };
     });
 
     document.getElementById("create_new").addEventListener("click", function () {
         console.log("create new task")
+        document.getElementById("hiddenId").value = 0;
+        console.log(document.getElementById("hiddenId").value)
         createNewTask();
+    });
+
+
+    document.getElementById("Everything").addEventListener("click", function () {
+        reload();
+    });
+
+    document.getElementById("Pending").addEventListener("click", function () {
+        for (let element of allTasks) {
+            if (element.completed === true) {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
+            }
+            else {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
+            }
+        }
+    });
+
+    document.getElementById("Completed").addEventListener("click", function () {
+        for (let element of allTasks) {
+            if (element.completed === true) {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
+            }
+            else {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
+            }
+        }
     });
 });
 
