@@ -349,11 +349,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    document.addEventListener('keydown', function (event) {
-        if (event.key === "ArrowLeft") {
-            location.reload();
-            asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj();
-        } else (console.log(event.key))
+    document.getElementById("Refresh").addEventListener("click", function () {
+        asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj();
+        location.reload();
     });
 });
-

@@ -13,33 +13,36 @@
         <h3>My tasks</h3>
         <div>
             <h4>
-                <a id = "Everything" href="#">All tasks</a>
+                <a id="Everything" href="#">All tasks</a>
             </h4>
             <h4>
-                <a id = "Pending" href="#">Pending</a>
+                <a id="Pending" href="#">Pending</a>
             </h4>
             <h4>
-                <a id = "Completed" href="#">Completed</a>
+                <a id="Completed" href="#">Completed</a>
+            </h4>
+            <h4>
+                <a id="Refresh" href="#">Refresh</a>
             </h4>
         </div>
     </nav>
     <main>
-        <section id = "modal_contents">
+        <section id="modal_contents">
             <header>
                 <h1>All tasks</h1>
                 <h3 id="hw_tracker"></h3>
-                <button type="button" id="create_new">Create New Task</button> 
+                <button type="button" id="create_new">Create New Task</button>
             </header>
-        <ul id ="task_list">
+            <ul id="task_list">
 
-        </ul>    
-            
+            </ul>
+
         </section>
         <hr>
-        <div id = "modal_form">
+        <div id="modal_form">
             <section id="new_task">
                 <h3 id="modal_name">Create new task</h3>
-                <input type="hidden" id ="hiddenId" value='-1'>
+                <input type="hidden" id="hiddenId" value='-1'>
                 <input type="text" placeholder="Task title" id="new_task_title">
                 <textarea placeholder="Task description" id="new_task_description"></textarea>
                 <input type="date" id="new_task_due_date">
