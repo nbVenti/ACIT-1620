@@ -39,12 +39,35 @@ function hideModal() {
 }
 
 
-function reload() {
+function reload(condition) {
     document.getElementById("task_list").innerHTML = "";
     document.getElementById("hw_tracker").innerHTML = "";
     document.getElementById("hiddenId").value = -1;
     makeTasks();
     recall();
+    if (condition === "Pending") {
+        for (let element of allTasks) {
+            if (element.completed === true) {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
+            }
+            else {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
+            }
+        }
+    } else if (condition === "Completed") {
+        for (let element of allTasks) {
+            if (element.completed === true) {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
+            }
+            else {
+                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
+            }
+        }
+    } else if (condition === "Everything") {
+        for (let element of allTasks) {
+            document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
+        }
+    }
 };
 
 function makeTasks() {
@@ -161,7 +184,7 @@ function editTask(element) {
                 allTasks[index]["dueDate"] = MakeDueDate();
                 hideModal();
                 loadData();
-            } else { console.log(event.target.id, document.getElementById("hiddenId").value) }
+            }
 
         });
     }
@@ -205,7 +228,13 @@ function deleteTask(element) {
 
 };
 
-function checkOverdue() {
+function checkOverdue(x) {
+    let condition = "Everything";
+    if (x) {
+        document.getElementById("hiddenId2").value = x;
+        condition = x}
+    if (!x) {condition = document.getElementById("hiddenId2").value}
+        
     for (let element of document.getElementsByClassName("task_checkbox")) {
         let index = element.id.split("_")[2] - 1;
         let TBindex = element.id.split("_")[2];
@@ -216,20 +245,31 @@ function checkOverdue() {
                 element.parentElement.style.backgroundColor = "green";
                 allTasks[index].completed = true;
                 localStorage.setItem("taskData", JSON.stringify(allTasks));
+                if (condition === "Pending") 
+                    reload("Pending");
             }
             if (element.checked === false) {
                 allTasks[index].completed = false
+                localStorage.setItem("taskData", JSON.stringify(allTasks));
+                if (condition === "Completed")
+                    reload("Completed");   
             }
 
-            if (element.checked === false && overdue(TBindex) === true && allTasks[index].completed === false) {
+            if (element.checked === false && overdue(TBindex) === true) {
                 element.parentElement.style.backgroundColor = "red";
                 localStorage.setItem("taskData", JSON.stringify(allTasks));
+                if (condition === "Pending")
+                    reload("Completed");
             }
-            else { console.log("not overdue") }
 
-            if (element.checked === false && overdue(TBindex) === false && allTasks[index].completed === false) {
+            if (element.checked === false && overdue(TBindex) === false ) {
                 element.parentElement.style.backgroundColor = "";
+                localStorage.setItem("taskData", JSON.stringify(allTasks));
+                if (condition === "Pending")
+                    reload("Completed");
             }
+            console.log(condition, "test")
+
             // console.log(document.getElementById(element.parentElement.id).id)}
             // console.log(element.parentElement.overdue)
             // console.log(element.parentElement.id)
@@ -302,7 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("modal_contents").addEventListener("click", (event) => {
         for (let element of document.getElementsByClassName("delete_task")) {
             if (element.id === event.target.id) {
-
                 deleteTask(element);
             }
         };
@@ -324,30 +363,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     document.getElementById("Everything").addEventListener("click", function () {
-        reload();
+        checkOverdue("Everything")
+        reload("Everything");
     });
 
     document.getElementById("Pending").addEventListener("click", function () {
-        for (let element of allTasks) {
-            if (element.completed === true) {
-                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
-            }
-            else {
-                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
-            }
-        }
+        checkOverdue("Pending")
+       reload("Pending");
     });
 
     document.getElementById("Completed").addEventListener("click", function () {
-        for (let element of allTasks) {
-            if (element.completed === true) {
-                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "";
-            }
-            else {
-                document.getElementById("task_" + (allTasks.indexOf(element) + 1)).style.display = "none";
-            }
-        }
+        checkOverdue("Completed")
+        reload("Completed");
     });
+
+    
 
     document.getElementById("Refresh").addEventListener("click", function () {
         asdfghdjfsdghkjhasdfgfjkhhdfgkjsdfghkljsdfghsldfkj();
