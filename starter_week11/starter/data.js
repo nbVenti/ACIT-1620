@@ -182,11 +182,17 @@ function editTask(element) {
                 allTasks[index]["title"] = MakeTitle();
                 allTasks[index]["description"] = MakeDescription();
                 allTasks[index]["dueDate"] = MakeDueDate();
-                hideModal();
                 loadData();
+                return null
+            } else if (event.target.id === "close_modal") {hideModal();
+                console.log(allTasks[index]);
+                localStorage.setItem("taskData", JSON.stringify(allTasks));
+                return null
             }
-
+            else { hideModal();
+            return null}    
         });
+        return null
     }
 };
 
@@ -268,7 +274,6 @@ function checkOverdue(x) {
                 if (condition === "Pending")
                     reload("Completed");
             }
-            console.log(condition, "test")
 
             // console.log(document.getElementById(element.parentElement.id).id)}
             // console.log(element.parentElement.overdue)
