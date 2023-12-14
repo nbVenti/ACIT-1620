@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Final 1620</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="exam2.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px auto;
+            width: 50vw;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label for="num1">First number:</label>
+            <input type="number" name="num1" id="num1">
+            <label for="num2">Second number:</label>
+            <input type="number" name="num2" id="num2">
+        </div>
+        <div>
+            <input type="radio" name="operation" id="plus">
+            <label for="plus">+ (add)</label>
+            <input type="radio" name="operation" id="minus">
+            <label for="minus">- (substract)</label>
+            <input type="radio" name="operation" id="times">
+            <label for="times">* (multiply)</label>
+            <input type="radio" name="operation" id="dividedBy">
+            <label for="dividedBy">/ (divide)</label>
+        </div>
+        <input type="submit" id="btn_submit" value="Show result">
+    </form>
+    <p id="counter">You used the calculator 0 times. 0 operations were invalid or did not return a numeric value.</p>
+    <div id="results">
+    </div>
+    
+</body>
+
+</html>

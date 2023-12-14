@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- changed header tag to head -->
+
+<head>
+    <title>Final exam 1620</title>
+    <style>
+        #myLink {
+            cursor: pointer;
+        }
+
+        p.myParagraph {
+            border: 2px solid red;
+        }
+
+        .alert {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin: 10px;
+        }
+    </style>
+    <script src="bad.js"></script>
+    <!-- moved the script up to the head -->
+</head>
+
+<body>
+    <div id="myLink">This is a link to BCIT's website.</div>
+<!-- added h6 to add a purpose to the section -->
+    <section>
+        <h6> Below is a list of web technologies you have learned in this course: </h6>
+    </section>
+    <p class="myParagraph">
+        • HTML
+        <br>
+        • CSS
+        <br>
+        • JavaScript
+    </p>
+<!-- removed extra div ender -->
+    <div>
+        <!-- Changed ID to Class because you cannot have more than one element with the same ID -->
+        <div class="alert"></div>
+        <div class="alert"></div>
+        <div class="alert"></div>
+    </div>
+    <!-- I removed the # making the href refrence itself -->
+    <a href=>Reload page</a>
+    <div id="output">
+
+    </div>
+</body>
+
+
+</html>
